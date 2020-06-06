@@ -2,7 +2,7 @@ pipelines:
   demo_app_int:
     group: demo_app
     materials:
-      mygit: #name of material
+      int_code_base: #name of material
         git: https://github.com/ThoughtWorksInc/gocd_demo.git
     environment_variables:
       IMAGE_NAME: gocd_demo_app 
@@ -88,11 +88,11 @@ pipelines:
   demo_app_qa:
     group: demo_app
     materials:
-      mygit: #name of material
-        git: https://github.com/ashikansal/gocd_demo.git
-      upstream:
+      qa_code_base: #name of material
+        git: https://github.com/ThoughtWorksInc/gocd_demo.git
+      qa_upstream:
         pipeline: demo_app_int
-        stage: deploy_app
+        stage: health_check
     environment_variables:
       IMAGE_NAME: gocd_demo_app 
       IMAGE_VERSION: latest
@@ -140,11 +140,11 @@ pipelines:
   demo_app_prod:
     group: demo_app
     materials:
-      mygit: #name of material
-        git: https://github.com/ashikansal/gocd_demo.git
+      prod_code_base: #name of material
+        git: https://github.com/ThoughtWorksInc/gocd_demo.git
       qa_upstream:
         pipeline: demo_app_qa
-        stage: api_test
+        stage: health_check
       # int_upstream:
       #   pipeline: demo_app_int
       #   stage: build_and_push_image
@@ -169,7 +169,7 @@ pipelines:
               tasks:
                 - fetch:
                     artifact_origin: external
-                    pipeline: demo_app_int
+                    pipeline: demo_app_int/demo_app_qa
                     stage: build_and_push_image
                     job: build_and_push_image
                     artifact_id: gocd_demo
