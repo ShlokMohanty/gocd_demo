@@ -145,9 +145,9 @@ pipelines:
       qa_upstream:
         pipeline: demo_app_qa
         stage: api_test
-      int_upstream:
-        pipeline: demo_app_int
-        stage: build_and_push_image
+      # int_upstream:
+      #   pipeline: demo_app_int
+      #   stage: build_and_push_image
     environment_variables:
       IMAGE_NAME: gocd_demo_app 
       IMAGE_VERSION: latest
