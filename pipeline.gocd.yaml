@@ -153,6 +153,15 @@ pipelines:
       IMAGE_VERSION: latest
       DOCKERHUB_USERNAME: ashikansal #replace it by your own username
     stages:
+      - waiting_zone: # name of stage
+          jobs:
+            waiting_zone:
+              tasks:
+                - exec:
+                    command: bash
+                    arguments:
+                      - -c
+                      - echo "waiting for prod deployment to trigger"              
       - deploy_app: # name of stage
           approval: manual
           jobs:
