@@ -101,6 +101,10 @@ pipelines:
       - deploy_app: # name of stage
           jobs:
             deploy_app:
+              artifacts:
+                - build:
+                    source: cleanup.sh
+                    destination: cleanup/
               tasks: 
                 - fetch:
                     artifact_origin: external
@@ -140,14 +144,9 @@ pipelines:
   demo_app_prod:
     group: demo_app
     materials:
-      prod_code_base: #name of material
-        git: https://github.com/ThoughtWorksInc/gocd_demo.git
-      qa_upstream:
+      qa_upstream: #name of material
         pipeline: demo_app_qa
         stage: health_check
-      # int_upstream:
-      #   pipeline: demo_app_int
-      #   stage: build_and_push_image
     environment_variables:
       IMAGE_NAME: gocd_demo_app 
       IMAGE_VERSION: latest
@@ -161,12 +160,20 @@ pipelines:
                     command: bash
                     arguments:
                       - -c
-                      - echo "waiting for prod deployment to trigger"              
+                      - echo "waiting for prod deployment to trigger"
       - deploy_app: # name of stage
           approval: manual
+          allow_only_on_success: true
           jobs:
             deploy_app:
               tasks:
+                - fetch:
+                    run_if: passed
+                    artifact_origin: gocd # default value
+                    pipeline: demo_app_qa
+                    stage: deploy_app
+                    job: deploy_app
+                    source: cleanup/
                 - fetch:
                     artifact_origin: external
                     pipeline: demo_app_int/demo_app_qa
@@ -178,7 +185,7 @@ pipelines:
                     command: bash
                     arguments:
                       - -c
-                      - ./cleanup.sh gocd_demo_app_prod               
+                      - chmod +x cleanup/cleanup.sh && ./cleanup/cleanup.sh gocd_demo_app_prod
                 - exec:
                     command: bash
                     arguments:
