@@ -2,8 +2,9 @@
 
 ## **PreRequisite**:
 
-1. Install Java 11
-> Note: Java version requirement depends on GOCD version being used
+1. Install Java
+> Note: Java version requirement depends on GOCD version being used. 
+>For DEMO, we have used GOCD Version 20.3.0, hence Java 11 is needed.
 2. Install Docker
 3. Install GoServer
 > Installation instruction as per OS are available on [GOCD official site](https://docs.gocd.org/current/installation/installing_go_server.html)
@@ -39,7 +40,7 @@ Change below environment variables in pipeline.gocd.yaml file:
 ```
 DOCKERHUB_USERNAME: <replace with your docker hub username>
 
-id: <replace with your artifact_store_id>
-store_id: <replace with your artifact_store_id>
-artifact_id: <replace with your artifact_store_id>
+id: <replace with your artifact_store_id configured in Step 7 of Prerequisite>
+store_id: <replace with your artifact_store_id configured in Step 7 of Prerequisite>
+artifact_id: <replace with your artifact_store_id configured in Step 7 of Prerequisite>
 ```
