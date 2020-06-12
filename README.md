@@ -34,6 +34,13 @@ Follow the instructions [here](https://docs.gocd.org/current/configuration/manag
     </config-repo>
   </config-repos>
 ```
+3. Configure Github Webhook for GOCD (Optional)
+>By default, GOCD does polling after every 60 sec.
+>For fast response, we can configure Git to push for changes to GOCD by configuring Webhook.
+
+- For webhook configuration:
+    - Payload URL : <gocd-server-url>/go/api/webhooks/github/notify
+    - Secret : #you can get same from Config XML
 
 ## **Settings to be modified**
 Change below environment variables in pipeline.gocd.yaml file:
