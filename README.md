@@ -39,7 +39,7 @@ Follow the instructions [here](https://docs.gocd.org/current/configuration/manag
 >For fast response, we can configure Git to push for changes to GOCD by configuring Webhook.
 
 - For webhook configuration:
-    - Payload URL : <gocd-server-url>/go/api/webhooks/github/notify
+    - Payload URL : $gocd-server-url/go/api/webhooks/github/notify
     - Secret : #you can get same from Config XML
 
 ## **Settings to be modified**
