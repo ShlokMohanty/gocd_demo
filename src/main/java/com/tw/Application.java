@@ -21,7 +21,7 @@ public class Application {
     @Bean
     CommandLineRunner init(UserRepository userRepository, ProductService productService) {
         return args -> {
-            Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel", "Ashle", "Kavin").forEach(name -> {
+            Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel", "Ashle", "Kavin", "Hive").forEach(name -> {
                 User user = new User(name, name.toLowerCase() + "@domain.com");
                 userRepository.save(user);
             });
