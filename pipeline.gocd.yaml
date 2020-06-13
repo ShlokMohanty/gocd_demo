@@ -38,7 +38,7 @@ pipelines:
               artifacts:
                 - external:
                     id: gocd_demo #replace with your artifact id
-                    store_id: gocd_demo #replace with your artifact id
+                    store_id: gocd_demo #replace with your artifact store id
                     configuration:
                       options:
                         Image: ${DOCKERHUB_USERNAME}/${IMAGE_NAME}
@@ -64,7 +64,7 @@ pipelines:
                     pipeline: demo_app_int
                     stage: build_and_push_image
                     job: build_and_push_image
-                    artifact_id: gocd_demo
+                    artifact_id: gocd_demo #replace with your artifact id build in previous step
                     run_if: passed
                 - exec:
                     command: bash

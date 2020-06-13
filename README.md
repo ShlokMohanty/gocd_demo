@@ -40,9 +40,9 @@ Change below environment variables in pipeline.gocd.yaml file:
 ```
 DOCKERHUB_USERNAME: <replace with your docker hub username>
 
-id: <replace with your artifact_store_id>
+id: <replace with your artifact id>
 store_id: <replace with your artifact_store_id>
-artifact_id: <replace with your artifact_store_id>
+artifact_id: <replace with your artifact id>
 ```
 
 ## Webhook settings
